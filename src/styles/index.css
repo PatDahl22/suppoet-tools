@@ -1,3 +1,145 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+@layer base {
+    html {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--foreground);
+    }
+}
+
+/* Figma-style helpers (classes du kan använda i JSX) */
+@layer components {
+    .app-shell {
+        min-height: 100vh;
+        background-color: var(--background);
+        display: flex;
+        justify-content: center;
+        padding: 1.5rem;
+    }
+
+    .app-frame {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    .screen {
+        min-height: calc(100vh - 3rem);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .screen-header {
+        padding-top: 2.5rem;
+        text-align: center;
+    }
+
+    .screen-title {
+        font-size: 1.875rem;
+        /* text-3xl */
+        font-weight: 600;
+        /* font-semibold */
+        letter-spacing: -0.025em;
+        /* tracking-tight */
+    }
+
+    .screen-subtitle {
+        margin-top: 0.5rem;
+        color: var(--muted-foreground);
+    }
+
+    .stack {
+        margin-top: 2.5rem;
+        /* space-y-6: add margin-bottom to all but last child */
+    }
+
+    .stack>*+* {
+        margin-top: 1.5rem;
+    }
+
+    .card-button {
+        width: 100%;
+        border-radius: 1rem;
+        /* rounded-2xl */
+        border: 1px solid var(--border);
+        background-color: var(--card);
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        /* shadow-sm */
+        transition: box-shadow 0.2s, transform 0.1s;
+    }
+
+    .card-button:hover {
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        /* shadow-md */
+    }
+
+    .card-button:active {
+        transform: scale(0.99);
+    }
+
+    .icon-badge {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1rem;
+        display: flex;
+        height: 3rem;
+        width: 3rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        border: 1px solid var(--border);
+        background-color: var(--background);
+    }
+
+    .info-card {
+        margin-top: 2rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border);
+        background-color: var(--card);
+        padding: 1.25rem;
+        font-size: 0.875rem;
+        color: var(--muted-foreground);
+    }
+
+    .bottom-nav {
+        margin-top: auto;
+        border-top: 1px solid var(--border);
+        background-color: color-mix(in srgb, var(--background) 80%, transparent);
+        backdrop-filter: blur(8px);
+    }
+
+    @supports (backdrop-filter: blur(8px)) {
+        .bottom-nav {
+            background-color: color-mix(in srgb, var(--background) 60%, transparent);
+        }
+    }
+
+    .bottom-nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+
+    .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.75rem;
+        color: var(--muted-foreground);
+    }
+
+    .nav-item-active {
+        color: var(--foreground);
+    }
+}

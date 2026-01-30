@@ -13,7 +13,8 @@ const helpTypeLabels = {
   personal: "Personligt stöd",
 };
 
-export function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
+
+export default function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onDone();

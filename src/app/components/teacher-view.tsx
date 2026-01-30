@@ -39,7 +39,7 @@ const statusColors = {
   planned: "bg-accent/50 text-accent-foreground border-accent",
 };
 
-export function TeacherView({ requests, onSelectRequest }: TeacherViewProps) {
+export default function TeacherView({ requests, onSelectRequest }: TeacherViewProps) {
   return (
     <div className="min-h-screen p-6 bg-background">
       <div className="max-w-4xl mx-auto space-y-6">

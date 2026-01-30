@@ -47,7 +47,7 @@ const mockHistory = [
   { date: "2 dagar sedan", type: "explanation", status: "completed" },
 ];
 
-export function DetailView({ request, onBack, onAction }: DetailViewProps) {
+export default function DetailView({ request, onBack, onAction }: DetailViewProps) {
   const Icon = helpTypeIcons[request.type];
 
   return (
