@@ -1,0 +1,8 @@
+{
+  "workbench.editorAssociations": [
+    {
+      "viewType": "default",
+      "filenamePattern": "*.json"
+    }
+  ]
+}

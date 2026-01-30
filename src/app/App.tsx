@@ -1,11 +1,34 @@
-import { useState } from "react";
-import { StudentView } from "@/app/components/student-view";
-import { HelpOptionsView } from "@/app/components/help-options-view";
-import { ConfirmationView } from "@/app/components/confirmation-view";
-import { TeacherView } from "@/app/components/teacher-view";
-import { DetailView } from "@/app/components/detail-view";
+import { useState, lazy, Suspense } from "react";
 import { Button } from "@/app/components/ui/button";
+import { Skeleton } from "@/app/components/ui/skeleton";
 import { Users, GraduationCap } from "lucide-react";
+
+// Lazy load view components (fixed import paths)
+const StudentView = lazy(() =>
+  import("@/app/components/student-view").then(module => ({
+    default: module.StudentView,
+  }))
+);
+const HelpOptionsView = lazy(() =>
+  import("@/app/components/help-options-view").then(module => ({
+    default: module.HelpOptionsView,
+  }))
+);
+const ConfirmationView = lazy(() =>
+  import("@/app/components/confirmation-view").then(module => ({
+    default: module.ConfirmationView,
+  }))
+);
+const TeacherView = lazy(() =>
+  import("@/app/components/teacher-view").then(module => ({
+    default: module.TeacherView,
+  }))
+);
+const DetailView = lazy(() =>
+  import("@/app/components/detail-view").then(module => ({
+    default: module.DetailView,
+  }))
+);
 
 type ViewMode = "role-select" | "student" | "help-options" | "confirmation" | "teacher" | "detail";
 type HelpType = "stuck" | "explanation" | "personal";
@@ -17,6 +40,15 @@ interface HelpRequest {
   type: HelpType;
   timestamp: string;
   status: "pending" | "acknowledged" | "planned";
+}
+
+function Loading() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 space-y-4">
+      <Skeleton className="h-12 w-3/4 max-w-md rounded-lg" />
+      <Skeleton className="h-64 w-full max-w-md rounded-xl" />
+    </div>
+  );
 }
 
 export default function App() {
@@ -184,38 +216,40 @@ export default function App() {
         </div>
       )}
 
-      {viewMode === "student" && (
-        <StudentView onRequestHelp={handleRequestHelp} />
-      )}
+      <Suspense fallback={<Loading />}>
+        {viewMode === "student" && (
+          <StudentView onRequestHelp={handleRequestHelp} />
+        )}
 
-      {viewMode === "help-options" && (
-        <HelpOptionsView
-          onSelectOption={handleSelectHelpOption}
-          onCancel={handleCancelHelpOptions}
-        />
-      )}
+        {viewMode === "help-options" && (
+          <HelpOptionsView
+            onSelectOption={handleSelectHelpOption}
+            onCancel={handleCancelHelpOptions}
+          />
+        )}
 
-      {viewMode === "confirmation" && selectedHelpType && (
-        <ConfirmationView
-          helpType={selectedHelpType}
-          onDone={handleConfirmationDone}
-        />
-      )}
+        {viewMode === "confirmation" && selectedHelpType && (
+          <ConfirmationView
+            helpType={selectedHelpType}
+            onDone={handleConfirmationDone}
+          />
+        )}
 
-      {viewMode === "teacher" && (
-        <TeacherView
-          requests={helpRequests}
-          onSelectRequest={handleSelectRequest}
-        />
-      )}
+        {viewMode === "teacher" && (
+          <TeacherView
+            requests={helpRequests}
+            onSelectRequest={handleSelectRequest}
+          />
+        )}
 
-      {viewMode === "detail" && selectedRequest && (
-        <DetailView
-          request={selectedRequest}
-          onBack={handleBackToTeacher}
-          onAction={handleAction}
-        />
-      )}
+        {viewMode === "detail" && selectedRequest && (
+          <DetailView
+            request={selectedRequest}
+            onBack={handleBackToTeacher}
+            onAction={handleAction}
+          />
+        )}
+      </Suspense>
     </div>
   );
 }
