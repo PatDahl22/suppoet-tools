@@ -139,94 +139,125 @@ export default function App() {
 
   if (viewMode === "role-select") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background">
-        <div className="w-full max-w-md space-y-8">
-          <div className="text-center space-y-2">
-            <h1 className="text-foreground">Digitalt Stödverktyg</h1>
+      <main className="min-h-screen bg-background flex justify-center p-6">
+        <section
+          aria-labelledby="page-title"
+          className="w-full max-w-md space-y-8"
+        >
+        <div className="app-frame screen">
+          <header className="text-center space-y-2">
+            <h1 id="page-title" className="text-3xl font-semibold text-foreground">
+              Digitalt Stödverktyg
+            </h1>
             <p className="text-muted-foreground">
               Välj din roll för att fortsätta
             </p>
-          </div>
+          </header>
 
-          <div className="space-y-4">
-            <Button
-              onClick={() => handleRoleSelect("student")}
-              variant="outline"
-              className="w-full h-32 flex flex-col items-center gap-4 p-6 bg-card hover:bg-accent transition-all"
+          {/* 2.4.6 Headings and Labels */}
+          <section
+            id="role-actions"
+            aria-labelledby="role-heading"
+            className="mt-10"
+          >
+            <h2 id="role-heading" className="sr-only">
+              Välj roll
+            </h2>
+
+            <div
+              className="role-stack"
+              role="group"
+              aria-describedby="role-instructions"
             >
-              <GraduationCap className="h-16 w-16 text-primary" />
-              <span className="text-xl">Jag är elev</span>
-            </Button>
+              <button
+                type="button"
+                className="role-card"
+                onClick={() => handleRoleSelect("student")}
+                aria-describedby="role-instructions"
+              >
+                <span className="role-icon" aria-hidden="true">
+                  <GraduationCap className="role-icon-svg" />
+                </span>
 
-            <Button
-              onClick={() => handleRoleSelect("teacher")}
-              variant="outline"
-              className="w-full h-32 flex flex-col items-center gap-4 p-6 bg-card hover:bg-accent transition-all"
-            >
-              <Users className="h-16 w-16 text-primary" />
-              <span className="text-xl">Jag är lärare</span>
-            </Button>
-          </div>
+                <span className="role-title">Jag är elev</span>
+                <span className="role-hint">För att be om hjälp diskret</span>
+              </button>
 
-          <div className="text-center text-sm text-muted-foreground bg-card p-6 rounded-xl border border-border">
-            <p>
+              <button
+                type="button"
+                className="role-card"
+                onClick={() => handleRoleSelect("teacher")}
+                aria-describedby="role-instructions"
+              >
+                <span className="role-icon" aria-hidden="true">
+                  <Users className="role-icon-svg" />
+                </span>
+
+                <span className="role-title">Jag är lärare</span>
+                <span className="role-hint">För att se och hantera förfrågningar</span>
+              </button>
+            </div>
+
+
+            <p className="text-sm text-muted-foreground bg-card border border-border rounded-xl p-4 text-center">
               Detta verktyg hjälper elever att diskret be om hjälp och ger lärare en snabb överblick över behoven i klassrummet.
             </p>
-          </div>
+          </section>
         </div>
-      </div>
+      </section>
+      </main>
     );
   }
 
   return (
-    <div className="relative">
-      {selectedRole && (
+    <main className="app-shell">
+      <div className="app-frame screen">
         <div className="fixed top-4 right-4 z-50">
           <Button
             onClick={handleBackToRoleSelect}
             variant="outline"
             size="sm"
-            className="bg-card"
+            className="rounded-xl px-4 py-2 shadow-sm bg-background"
           >
             Byt roll
           </Button>
         </div>
-      )}
 
-      <Suspense fallback={<Loading />}>
-        {viewMode === "student" && (
-          <StudentView onRequestHelp={handleRequestHelp} />
-        )}
+        <Suspense fallback={<Loading />}>
+          {viewMode === "student" && (
+            <StudentView onRequestHelp={handleRequestHelp} />
+          )}
 
-        {viewMode === "help-options" && (
-          <HelpOptionsView
-            onSelectOption={handleSelectHelpOption}
-            onCancel={handleCancelHelpOptions}
-          />
-        )}
+          {viewMode === "help-options" && (
+            <HelpOptionsView
+              onSelectOption={handleSelectHelpOption}
+              onCancel={handleCancelHelpOptions}
+            />
+          )}
 
-        {viewMode === "confirmation" && selectedHelpType && (
-          <ConfirmationView
-            helpType={selectedHelpType}
-            onDone={handleConfirmationDone}
-          />
-        )}
+          {viewMode === "confirmation" && selectedHelpType && (
+            <ConfirmationView
+              helpType={selectedHelpType}
+              onDone={handleConfirmationDone}
+            />
+          )}
 
-        {viewMode === "teacher" && (
-          <TeacherView
-            requests={helpRequests}
-            onSelectRequest={handleSelectRequest}
-          />
-        )}
+          {viewMode === "teacher" && (
+            <TeacherView
+              requests={helpRequests}
+              onSelectRequest={handleSelectRequest}
+            />
+          )}
 
-        {viewMode === "detail" && selectedRequest && (
-          <DetailView
-            request={selectedRequest}
-            onBack={handleBackToTeacher}
-            onAction={handleAction}
-          />
-        )}
-      </Suspense>
-    </div>
+          {viewMode === "detail" && selectedRequest && (
+            <DetailView
+              request={selectedRequest}
+              onBack={handleBackToTeacher}
+              onAction={handleAction}
+            />
+          )}
+        </Suspense>
+      </div>
+    </main>
   );
 }

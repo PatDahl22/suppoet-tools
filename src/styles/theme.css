@@ -1,29 +1,29 @@
 
 :root {
   --font-size: 16px;
-  --background: #f8f9fb;
-  --foreground: #1a1d29;
-  --card: #ffffff;
-  --card-foreground: #1a1d29;
-  --popover: #ffffff;
-  --popover-foreground: #1a1d29;
-  --primary: #7ba7a3;
-  --primary-foreground: #ffffff;
-  --secondary: #e8f0ef;
-  --secondary-foreground: #1a1d29;
-  --muted: #e8eef5;
-  --muted-foreground: #5a6278;
-  --accent: #d4e4f7;
-  --accent-foreground: #1a1d29;
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.08);
+  --background: 40 30% 98%;  
+  --foreground: 140 20% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 140 20% 15%;
+  --popover: 100 0% 100%;
+  --popover-foreground: 140 20% 15%;
+  --primary: 140 30% 35%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 160 14% 93%;
+  --secondary-foreground: 140 20% 15%;
+  --muted: 40 30% 92%;
+  --muted-foreground: 140 10% 35%;
+  --accent: 140 25% 92%;
+  --accent-foreground: 140 20% 15%;
+  --destructive: 350 70% 60%;
+  --destructive-foreground: 100 0% 100%;
+  --border: 140 15% 85%;
   --input: transparent;
-  --input-background: #f3f5f8;
-  --switch-background: #cbced4;
+  --input-background: 40 30% 95%;
+  --switch-background: 203 12% 83%;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #7ba7a3;
+  --ring: 140 35% 45%;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -62,7 +62,7 @@
   --ring: oklch(0.439 0 0);
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(69.737% 0.09467 269.502);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
@@ -128,11 +128,6 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
-
-  /**
-  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
-  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
-  */
 
   html {
     font-size: var(--font-size);

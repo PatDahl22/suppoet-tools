@@ -1,3 +1,11 @@
-@import 'tailwindcss';
+@tailwind base;
 
-@import 'tw-animate-css';
+/* theme tokens + base-stilar ska ligga efter @tailwind base */
+@import "./theme.css";
+
+@tailwind components;
+
+/* dina egna komponentklasser */
+@import "./index.css";
+
+@tailwind utilities;

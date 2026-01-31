@@ -1,145 +1,150 @@
-@import './fonts.css';
-@import './tailwind.css';
-@import './theme.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-    html {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-    body {
-        background-color: var(--background);
-        color: var(--foreground);
-    }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
 }
 
 /* Figma-style helpers (classes du kan använda i JSX) */
 @layer components {
-    .app-shell {
-        min-height: 100vh;
-        background-color: var(--background);
-        display: flex;
-        justify-content: center;
-        padding: 1.5rem;
-    }
+  .role-card {
+    width: 100%;
+    border-radius: 1.5rem;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    text-align: center;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: all 0.2s;
+    outline: none;
+  }
 
-    .app-frame {
-        width: 100%;
-        max-width: 420px;
-    }
+  .role-card:hover {
+    background-color: var(--accent);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
 
-    .screen {
-        min-height: calc(100vh - 3rem);
-        display: flex;
-        flex-direction: column;
-    }
+  .role-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
+  }
 
-    .screen-header {
-        padding-top: 2.5rem;
-        text-align: center;
-    }
+  .role-card:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
 
-    .screen-title {
-        font-size: 1.875rem;
-        /* text-3xl */
-        font-weight: 600;
-        /* font-semibold */
-        letter-spacing: -0.025em;
-        /* tracking-tight */
-    }
+  .role-card:active {
+    transform: scale(0.99);
+  }
 
-    .screen-subtitle {
-        margin-top: 0.5rem;
-        color: var(--muted-foreground);
-    }
+  .role-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
+  }
 
-    .stack {
-        margin-top: 2.5rem;
-        /* space-y-6: add margin-bottom to all but last child */
-    }
+  .role-stack {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-    .stack>*+* {
-        margin-top: 1.5rem;
-    }
+  .role-icon {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25rem;
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--accent);
+    color: var(--primary);
+  }
 
-    .card-button {
-        width: 100%;
-        border-radius: 1rem;
-        /* rounded-2xl */
-        border: 1px solid var(--border);
-        background-color: var(--card);
-        padding: 2.5rem;
-        text-align: center;
-        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-        /* shadow-sm */
-        transition: box-shadow 0.2s, transform 0.1s;
-    }
+  .role-icon-svg {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 
-    .card-button:hover {
-        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-        /* shadow-md */
-    }
+  .role-card-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+    color: var(--foreground);
+  }
 
-    .card-button:active {
-        transform: scale(0.99);
-    }
+  .role-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+    color: var(--foreground);
+  }
 
-    .icon-badge {
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 1rem;
-        display: flex;
-        height: 3rem;
-        width: 3rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 9999px;
-        border: 1px solid var(--border);
-        background-color: var(--background);
-    }
+  .role-hint {
+    margin-top: 0.5rem;
+    display: block;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
 
-    .info-card {
-        margin-top: 2rem;
-        border-radius: 1rem;
-        border: 1px solid var(--border);
-        background-color: var(--card);
-        padding: 1.25rem;
-        font-size: 0.875rem;
-        color: var(--muted-foreground);
-    }
+  /* gör icon-badge mer "Figma" */
+  .icon-badge {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25rem;
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border-width: 1px;
+    background-color: var(--background);
+  }
 
-    .bottom-nav {
-        margin-top: auto;
-        border-top: 1px solid var(--border);
-        background-color: color-mix(in srgb, var(--background) 80%, transparent);
-        backdrop-filter: blur(8px);
-    }
+  /* lite mer Figma spacing på stack */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-    @supports (backdrop-filter: blur(8px)) {
-        .bottom-nav {
-            background-color: color-mix(in srgb, var(--background) 60%, transparent);
-        }
-    }
+  .screen-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+  }
 
-    .bottom-nav-inner {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        padding-top: 0.75rem;
-        padding-bottom: 0.75rem;
-    }
+  .screen-subtitle {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: var(--muted-foreground);
+  }
 
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0.25rem;
-        font-size: 0.75rem;
-        color: var(--muted-foreground);
-    }
-
-    .nav-item-active {
-        color: var(--foreground);
-    }
+  .info-card {
+    margin-top: 2.5rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    background-color: var(--card);
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
+  }
 }
