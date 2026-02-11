@@ -5,7 +5,7 @@ interface StudentViewProps {
   onRequestHelp: () => void;
 }
 
-export function StudentView({ onRequestHelp }: StudentViewProps) {
+export default function StudentView({ onRequestHelp }: StudentViewProps) {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background">
       <div className="w-full max-w-md space-y-8">

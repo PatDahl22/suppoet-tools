@@ -47,7 +47,7 @@ const mockHistory = [
   { date: "2 dagar sedan", type: "explanation", status: "completed" },
 ];
 
-export function DetailView({ request, onBack, onAction }: DetailViewProps) {
+export default function DetailView({ request, onBack, onAction }: DetailViewProps) {
   const Icon = helpTypeIcons[request.type];
 
   return (
@@ -69,9 +69,9 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
             </div>
 
             <div className="flex-1 space-y-3">
-              <h2 className="text-foreground">{request.studentName}</h2>
-              <p className="text-lg">{helpTypeLabels[request.type]}</p>
-              <p className="text-muted-foreground">
+              <h1 className="text-foreground">{request.studentName}</h1>
+              <p className="text-lg font-medium">{helpTypeLabels[request.type]}</p>
+              <p className="text-muted-foreground leading-relaxed">
                 {helpTypeDescriptions[request.type]}
               </p>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -84,19 +84,19 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
           <div className="bg-accent/30 p-6 rounded-lg">
             <div className="flex items-center gap-2 mb-2">
               <div className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-              <span className="text-sm">Status</span>
+              <span className="text-sm font-medium">Status</span>
             </div>
             <p className="text-lg">{statusLabels[request.status]}</p>
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-foreground">Åtgärder</h3>
+            <h2 className="text-foreground">Åtgärder</h2>
             
             {request.status === "pending" && (
               <>
                 <Button
                   onClick={() => onAction("acknowledge")}
-                  className="w-full h-14 bg-primary hover:bg-primary/90"
+                  className="w-full h-[var(--touch-target,56px)] bg-primary hover:bg-primary/90 text-[16px]"
                 >
                   <CheckCircle className="h-5 w-5 mr-2" />
                   Kommer strax
@@ -104,7 +104,7 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
                 <Button
                   onClick={() => onAction("plan")}
                   variant="outline"
-                  className="w-full h-14"
+                  className="w-full h-[var(--touch-target,56px)] text-[16px]"
                 >
                   <Clock className="h-5 w-5 mr-2" />
                   Planera för senare
@@ -115,7 +115,7 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
             {request.status === "acknowledged" && (
               <Button
                 onClick={() => onAction("complete")}
-                className="w-full h-14 bg-primary hover:bg-primary/90"
+                className="w-full h-[var(--touch-target,56px)] bg-primary hover:bg-primary/90 text-[16px]"
               >
                 <CheckCircle className="h-5 w-5 mr-2" />
                 Markera som klar
@@ -125,7 +125,7 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
             {request.status === "planned" && (
               <Button
                 onClick={() => onAction("acknowledge")}
-                className="w-full h-14 bg-primary hover:bg-primary/90"
+                className="w-full h-[var(--touch-target,56px)] bg-primary hover:bg-primary/90 text-[16px]"
               >
                 <CheckCircle className="h-5 w-5 mr-2" />
                 Kommer strax
@@ -135,7 +135,7 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
         </div>
 
         <div className="bg-card p-6 rounded-xl border border-border space-y-4">
-          <h3 className="text-foreground">Tidigare förfrågningar</h3>
+          <h2 className="text-foreground">Tidigare förfrågningar</h2>
           <div className="space-y-3">
             {mockHistory.map((item, index) => {
               const HistIcon = helpTypeIcons[item.type as keyof typeof helpTypeIcons];
@@ -146,7 +146,7 @@ export function DetailView({ request, onBack, onAction }: DetailViewProps) {
                 >
                   <HistIcon className="h-6 w-6 text-muted-foreground" />
                   <div className="flex-1">
-                    <p className="text-sm">{helpTypeLabels[item.type as keyof typeof helpTypeLabels]}</p>
+                    <p className="font-medium">{helpTypeLabels[item.type as keyof typeof helpTypeLabels]}</p>
                     <p className="text-xs text-muted-foreground">{item.date}</p>
                   </div>
                   <CheckCircle className="h-5 w-5 text-primary" />

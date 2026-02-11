@@ -13,7 +13,8 @@ const helpTypeLabels = {
   personal: "Personligt stöd",
 };
 
-export function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
+
+export default function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onDone();
@@ -31,14 +32,14 @@ export function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
           </div>
 
           <div className="text-center space-y-3">
-            <h2 className="text-foreground">Din förfrågan är skickad!</h2>
-            <p className="text-lg text-muted-foreground">
+            <h1 className="text-foreground">Din förfrågan är skickad!</h1>
+            <p className="text-lg text-muted-foreground font-medium">
               {helpTypeLabels[helpType]}
             </p>
           </div>
 
           <div className="bg-secondary/50 p-6 rounded-xl text-center space-y-2">
-            <p className="text-muted-foreground">
+            <p className="text-muted-foreground leading-relaxed">
               Läraren har fått din förfrågan och kommer att hjälpa dig så snart som möjligt.
             </p>
             <p className="text-sm text-muted-foreground">
@@ -50,7 +51,7 @@ export function ConfirmationView({ helpType, onDone }: ConfirmationViewProps) {
         <Button
           onClick={onDone}
           variant="outline"
-          className="w-full"
+          className="w-full h-[var(--touch-target,48px)] text-[16px]"
         >
           Stäng
         </Button>

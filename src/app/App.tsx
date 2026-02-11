@@ -1,34 +1,12 @@
 import { useState, lazy, Suspense } from "react";
 import { Button } from "@/app/components/ui/button";
-import { Skeleton } from "@/app/components/ui/skeleton";
 import { Users, GraduationCap } from "lucide-react";
 
-// Lazy load view components (fixed import paths)
-const StudentView = lazy(() =>
-  import("@/app/components/student-view").then(module => ({
-    default: module.StudentView,
-  }))
-);
-const HelpOptionsView = lazy(() =>
-  import("@/app/components/help-options-view").then(module => ({
-    default: module.HelpOptionsView,
-  }))
-);
-const ConfirmationView = lazy(() =>
-  import("@/app/components/confirmation-view").then(module => ({
-    default: module.ConfirmationView,
-  }))
-);
-const TeacherView = lazy(() =>
-  import("@/app/components/teacher-view").then(module => ({
-    default: module.TeacherView,
-  }))
-);
-const DetailView = lazy(() =>
-  import("@/app/components/detail-view").then(module => ({
-    default: module.DetailView,
-  }))
-);
+const StudentView = lazy(() => import("@/app/components/student-view"));
+const HelpOptionsView = lazy(() => import("@/app/components/help-options-view"));
+const ConfirmationView = lazy(() => import("@/app/components/confirmation-view"));
+const TeacherView = lazy(() => import("@/app/components/teacher-view"));
+const DetailView = lazy(() => import("@/app/components/detail-view"));
 
 type ViewMode = "role-select" | "student" | "help-options" | "confirmation" | "teacher" | "detail";
 type HelpType = "stuck" | "explanation" | "personal";
@@ -44,9 +22,8 @@ interface HelpRequest {
 
 function Loading() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6 space-y-4">
-      <Skeleton className="h-12 w-3/4 max-w-md rounded-lg" />
-      <Skeleton className="h-64 w-full max-w-md rounded-xl" />
+    <div className="min-h-screen flex items-center justify-center p-6">
+      <p className="text-muted-foreground">Laddar…</p>
     </div>
   );
 }
