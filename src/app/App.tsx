@@ -22,7 +22,7 @@ export default function App() {
   return (
     <div className="h-full flex flex-col bg-background overflow-hidden">
       <main className="flex-1 flex justify-center p-6 overflow-y-auto">
-        <section aria-labelledby="page-title" className="w-full max-w-md space-y-8">
+        <section aria-labelledby="page-title" className="w-full mt-14 max-w-md space-y-8">
           <div className="app-frame screen">
             <header className="text-center space-y-2">
               <h1 id="page-title" className="text-3xl font-semibold text-foreground">Digital Support Tool</h1>
