@@ -1,11 +1,9 @@
 
-import StudentHome from "@/app/components/student-home";
-import StudentStep6 from "@/app/components/student-step6";
-import StudentStep7 from "@/app/components/student-step7";
-import StudentStep8 from "@/app/components/student-step8";
-import StudentStep9 from "@/app/components/student-step9";
+import StudentPage from "@/app/components/student-page";
 import TeacherDashboard from "@/app/components/teacher-dashboard";
 import { useEffect, useState } from "react";
+import { AppHeader } from "@/app/components/ui/app-header";
+import { AppFooter } from "@/app/components/ui/app-footer";
 
 type ViewMode = "role-select" | "student-home" | "student-step6" | "student-step7" | "student-step8" | "student-step9" | "teacher-dashboard";
 type HelpType = "stuck" | "explanation" | "personal";
@@ -36,12 +34,7 @@ export default function App() {
     { name: "Erik L.", type: "Break", status: "Pending" },
     { name: "Maria K.", type: "Visit", status: "Acknowledged" },
   ]);
-  // Visa instruktioner första gången elev loggar in
-  useEffect(() => {
-    if (viewMode === "student-home" && studentRequests.length === 0) {
-      setTimeout(() => setViewMode("student-step9"), 1000);
-    }
-  }, [viewMode]);
+  // Visa instruktioner endast om explicit valt
 
   const handleRoleSelect = (role: Role) => {
     setSelectedRole(role);
@@ -92,52 +85,53 @@ export default function App() {
 
   if (viewMode === "role-select") {
     return (
-      <main className="min-h-screen bg-background flex justify-center p-6">
-        <section aria-labelledby="page-title" className="w-full max-w-md space-y-8">
-          <div className="app-frame screen">
-            <header className="text-center space-y-2">
-              <h1 id="page-title" className="text-3xl font-semibold text-foreground">Digitalt Stödverktyg</h1>
-              <p className="text-muted-foreground">Välj din roll för att fortsätta</p>
-            </header>
-            <section id="role-actions" aria-labelledby="role-heading" className="mt-10">
-              <h2 id="role-heading" className="sr-only">Välj roll</h2>
-              <div className="role-stack" role="group" aria-describedby="role-instructions">
-                <button type="button" className="role-card" onClick={() => handleRoleSelect("student")}
-                  aria-describedby="role-instructions">
-                  <span className="role-title">Jag är elev</span>
-                  <span className="role-hint">För att be om hjälp diskret</span>
-                </button>
-                <button type="button" className="role-card" onClick={() => handleRoleSelect("teacher")}
-                  aria-describedby="role-instructions">
-                  <span className="role-title">Jag är lärare</span>
-                  <span className="role-hint">För att se och hantera förfrågningar</span>
-                </button>
-              </div>
-              <p className="text-sm text-muted-foreground bg-card border border-border rounded-xl p-4 text-center">
-                Detta verktyg hjälper elever att diskret be om hjälp och ger lärare en snabb överblick över behoven i klassrummet.
-              </p>
-            </section>
-          </div>
-        </section>
-      </main>
+      <div className="min-h-screen flex flex-col bg-background">
+        <AppHeader />
+        <main className="flex-1 flex justify-center p-6">
+          <section aria-labelledby="page-title" className="w-full max-w-md space-y-8">
+            <div className="app-frame screen">
+              <header className="text-center space-y-2">
+                <h1 id="page-title" className="text-3xl font-semibold text-foreground">Digitalt Stödverktyg</h1>
+                <p className="text-muted-foreground">Välj din roll för att fortsätta</p>
+              </header>
+              <section id="role-actions" aria-labelledby="role-heading" className="mt-10">
+                <h2 id="role-heading" className="sr-only">Välj roll</h2>
+                <div className="role-stack" role="group" aria-describedby="role-instructions">
+                  <button type="button" className="role-card" onClick={() => handleRoleSelect("student")}
+                    aria-describedby="role-instructions">
+                    <span className="role-title">Jag är elev</span>
+                    <span className="role-hint">För att be om hjälp diskret</span>
+                  </button>
+                  <button type="button" className="role-card" onClick={() => handleRoleSelect("teacher")}
+                    aria-describedby="role-instructions">
+                    <span className="role-title">Jag är lärare</span>
+                    <span className="role-hint">För att se och hantera förfrågningar</span>
+                  </button>
+                </div>
+                <p className="text-sm text-muted-foreground bg-card border border-border rounded-xl p-4 text-center">
+                  Detta verktyg hjälper elever att diskret be om hjälp och ger lärare en snabb överblick över behoven i klassrummet.
+                </p>
+              </section>
+            </div>
+          </section>
+        </main>
+        <AppFooter />
+      </div>
     );
   }
 
   // Student flow
-  if (viewMode === "student-home") {
-    return <StudentHome onRequestHelp={handleRequestHelp} />;
-  }
-  if (viewMode === "student-step6") {
-    return <StudentStep6 onSelect={handleSelectHelpOption} />;
-  }
-  if (viewMode === "student-step7") {
-    return <StudentStep7 />;
-  }
-  if (viewMode === "student-step8") {
-    return <StudentStep8 requests={studentRequests} onCancel={handleStudentCancel} onApprove={handleStudentApprove} />;
-  }
-  if (viewMode === "student-step9") {
-    return <StudentStep9 />;
+  if (["student-home", "student-step6", "student-step7", "student-step8", "student-step9"].includes(viewMode)) {
+    return (
+      <StudentPage
+        viewMode={viewMode as any}
+        studentRequests={studentRequests}
+        onRequestHelp={handleRequestHelp}
+        onSelectHelpOption={handleSelectHelpOption}
+        onStudentApprove={handleStudentApprove}
+        onStudentCancel={handleStudentCancel}
+      />
+    );
   }
   // Teacher flow
   if (viewMode === "teacher-dashboard") {
