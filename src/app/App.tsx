@@ -42,7 +42,7 @@ export default function App() {
                   <span className="role-hint">To view and manage requests</span>
                 </button>
               </div>
-              <p className="text-sm text-muted-foreground bg-card border border-border rounded-xl p-4 text-center">
+              <p className="mt-8 text-sm text-muted-foreground bg-card border border-border rounded-xl p-4 text-center">
                 This tool helps students ask for help discreetly and gives teachers a quick overview of classroom needs.
               </p>
             </section>

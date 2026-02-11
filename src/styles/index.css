@@ -99,7 +99,7 @@
     padding: 2rem 2.5rem 2rem 2.5rem;
     text-align: left;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
     display: flex;
     align-items: center;
@@ -108,26 +108,28 @@
   }
 
   .role-card:hover {
-    background-color: var(--accent);
+    background-color: #6D93F9;
+    transform: scale(1.02);
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    border-color: #6D93F9;
+  }
+  
+  .role-card:hover * {
+    color: white !important;
+    border-color: white !important;
+  }
+
+  .role-card:hover .role-icon {
+     background-color: rgba(255,255,255,0.2);
   }
 
   .role-card:focus-visible {
     outline: none;
     box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
-  }
-
-  .role-card:hover {
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
 
   .role-card:active {
-    transform: scale(0.99);
-  }
-
-  .role-card:focus-visible {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
+    transform: scale(0.98);
   }
 
   .role-stack {
