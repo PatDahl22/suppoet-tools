@@ -36,6 +36,23 @@
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+
+  /* Charts */
+  --color-chart-1: #4A90E2;
+  --color-chart-2: #9B51E0;
+  --color-chart-3: #F5A623;
+  --color-chart-4: #7ED957;
+  --color-chart-5: #F2994A;
+
+  /* Sidebar */
+  --color-sidebar: oklch(0.985 0 0);
+  --color-sidebar-foreground: oklch(0.145 0 0);
+  --color-sidebar-primary: #030213;
+  --color-sidebar-primary-foreground: oklch(0.985 0 0);
+  --color-sidebar-accent: oklch(0.97 0 0);
+  --color-sidebar-accent-foreground: oklch(0.205 0 0);
+  --color-sidebar-border: oklch(0.922 0 0);
+  --color-sidebar-ring: oklch(0.708 0 0);
 }
 
 @layer base {
@@ -58,5 +75,142 @@
   p, body {
     font-size: 0.875rem; /* 14px */
     line-height: 1.5;
+  }
+}
+
+/* Legacy Components from Remote */
+@layer components {
+  .role-card {
+    width: 100%;
+    max-width: 420px;
+    min-height: 120px;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    background-color: var(--card);
+    padding: 2rem 2.5rem 2rem 2.5rem;
+    text-align: left;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    transition: all 0.2s;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+  }
+
+  .role-card:hover {
+    background-color: var(--accent);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .role-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
+  }
+
+  .role-card:hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .role-card:active {
+    transform: scale(0.99);
+  }
+
+  .role-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ring), 0 0 0 4px var(--ring-offset, transparent);
+  }
+
+  .role-stack {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .role-icon {
+    flex-shrink: 0;
+    display: flex;
+    height: 48px;
+    width: 48px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    background-color: var(--accent);
+    color: var(--primary);
+  }
+
+  .role-icon-svg {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .role-card-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+    color: var(--foreground);
+  }
+
+  .role-title {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+    color: var(--foreground);
+    margin-bottom: 0.25rem;
+  }
+
+  .role-hint {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--muted-foreground);
+    margin-bottom: 0;
+  }
+
+  /* gör icon-badge mer "Figma" */
+  .icon-badge {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.25rem;
+    display: flex;
+    height: 3rem;
+    width: 3rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border-width: 1px;
+    background-color: var(--background);
+  }
+
+  /* lite mer Figma spacing på stack */
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .screen-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.01562em;
+  }
+
+  .screen-subtitle {
+    margin-top: 0.75rem;
+    font-size: 1rem;
+    color: var(--muted-foreground);
+  }
+
+  .info-card {
+    margin-top: 2.5rem;
+    border-radius: 1rem;
+    border-width: 1px;
+    background-color: var(--card);
+    padding: 1.5rem;
+    font-size: 0.875rem;
+    color: var(--muted-foreground);
   }
 }

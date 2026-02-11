@@ -1,5 +1,7 @@
+
 import { AlertCircle, BookOpen, Heart } from "lucide-react";
 import { Button } from "./ui/button";
+import React, { useState } from "react";
 
 interface HelpOptionsViewProps {
   onSelectOption: (option: "stuck" | "explanation" | "personal") => void;
@@ -7,20 +9,25 @@ interface HelpOptionsViewProps {
 }
 
 export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOptionsViewProps) {
+  const [selected, setSelected] = useState<null | string>(null);
+  const handleSelect = (option: "stuck" | "explanation" | "personal") => {
+    setSelected(option);
+    setTimeout(() => onSelectOption(option), 150); // Visuell feedback innan navigation
+  };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <h2 className="text-foreground">Vad behöver du hjälp med?</h2>
-          <p className="text-muted-foreground">Välj det alternativ som passar bäst</p>
+          <h1 className="text-foreground font-bold text-2xl" style={{ fontSize: 24, lineHeight: 1.2 }}>Vad behöver du hjälp med?</h1>
+          <p className="text-muted-foreground text-base" style={{ fontSize: 14, lineHeight: 1.5 }}>Välj det alternativ som passar bäst</p>
         </div>
 
         <div className="space-y-4">
           <Button
-            onClick={() => onSelectOption("stuck")}
+            onClick={() => handleSelect("stuck")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Request Help: I don't understand the task"
+            aria-label="Begär hjälp: Jag har fastnat"
           >
             <AlertCircle className="h-10 w-10 text-icon-blue group-hover:scale-110 transition-transform" />
             <div className="space-y-1">
@@ -32,10 +39,10 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
           </Button>
 
           <Button
-            onClick={() => onSelectOption("explanation")}
+            onClick={() => handleSelect("explanation")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Request Explanation: I don't understand the task"
+            aria-label="Begär hjälp: Behöver förklaring"
           >
             <BookOpen className="h-10 w-10 text-icon-blue group-hover:scale-110 transition-transform" />
             <div className="space-y-1">
@@ -47,10 +54,10 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
           </Button>
 
           <Button
-            onClick={() => onSelectOption("personal")}
+            onClick={() => handleSelect("personal")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Request Personal Help: I want to talk privately"
+            aria-label="Begär hjälp: Personligt stöd"
           >
             <Heart className="h-10 w-10 text-icon-purple group-hover:scale-110 transition-transform" />
             <div className="space-y-1">

@@ -1,7 +1,10 @@
+import '../../styles/index.css'; // Importera Tailwind CSS högst upp
+
 import { AlertCircle, BookOpen, Heart, Clock } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 
+// ...existing code...
 interface HelpRequest {
   id: string;
   studentName: string;
