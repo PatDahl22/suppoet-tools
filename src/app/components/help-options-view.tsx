@@ -12,14 +12,14 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
   const [selected, setSelected] = useState<null | string>(null);
   const handleSelect = (option: "stuck" | "explanation" | "personal") => {
     setSelected(option);
-    setTimeout(() => onSelectOption(option), 150); // Visuell feedback innan navigation
+    setTimeout(() => onSelectOption(option), 150); // Visual feedback before navigation
   };
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-background">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <h1 className="text-foreground font-bold text-2xl" style={{ fontSize: 24, lineHeight: 1.2 }}>Vad behöver du hjälp med?</h1>
-          <p className="text-muted-foreground text-base" style={{ fontSize: 14, lineHeight: 1.5 }}>Välj det alternativ som passar bäst</p>
+          <h1 className="text-foreground font-bold text-2xl" style={{ fontSize: 24, lineHeight: 1.2 }}>What do you need help with?</h1>
+          <p className="text-muted-foreground text-base" style={{ fontSize: 14, lineHeight: 1.5 }}>Choose the option that fits best</p>
         </div>
 
         <div className="space-y-4">
@@ -27,13 +27,13 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
             onClick={() => handleSelect("stuck")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Begär hjälp: Jag har fastnat"
+            aria-label="Request help: I'm stuck"
           >
             <AlertCircle className="h-10 w-10 text-icon-blue group-hover:scale-110 transition-transform" />
             <div className="space-y-1">
-              <h2 className="text-lg font-semibold">Jag har fastnat</h2>
+              <h2 className="text-lg font-semibold">I'm stuck</h2>
               <div className="text-sm text-muted-foreground">
-                Behöver hjälp att komma vidare
+                Need help to move forward
               </div>
             </div>
           </Button>
@@ -42,13 +42,13 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
             onClick={() => handleSelect("explanation")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Begär hjälp: Behöver förklaring"
+            aria-label="Request help: Need explanation"
           >
             <BookOpen className="h-10 w-10 text-icon-blue group-hover:scale-110 transition-transform" />
             <div className="space-y-1">
-              <h2 className="text-lg font-semibold">Behöver förklaring</h2>
+              <h2 className="text-lg font-semibold">Need explanation</h2>
               <div className="text-sm text-muted-foreground">
-                Förstår inte uppgiften
+                Don't understand the assignment
               </div>
             </div>
           </Button>
@@ -57,13 +57,13 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
             onClick={() => handleSelect("personal")}
             variant="outline"
             className="w-full h-auto min-h-[var(--touch-target,44px)] flex flex-col items-center gap-3 p-6 bg-card border border-border hover:bg-accent focus-visible:ring-3 focus-visible:ring-icon-blue rounded-[var(--radius)] transition-all group"
-            aria-label="Begär hjälp: Personligt stöd"
+            aria-label="Request help: Personal support"
           >
             <Heart className="h-10 w-10 text-icon-purple group-hover:scale-110 transition-transform" />
             <div className="space-y-1">
-              <h2 className="text-lg font-semibold">Personligt stöd</h2>
+              <h2 className="text-lg font-semibold">Personal support</h2>
               <div className="text-sm text-muted-foreground">
-                Vill prata privat
+                Want to talk privately
               </div>
             </div>
           </Button>
@@ -74,7 +74,7 @@ export default function HelpOptionsView({ onSelectOption, onCancel }: HelpOption
           variant="ghost"
           className="w-full mt-4"
         >
-          Avbryt
+          Cancel
         </Button>
       </div>
     </div>

@@ -1,53 +1,88 @@
 import StudentHome from "./student-home";
-import StudentStep6 from "./student-step6";
-import StudentStep7 from "./student-step7";
-import StudentStep8 from "./student-step8";
-import StudentStep9 from "./student-step9";
+import StudentStep1 from "./student-step1";
+import StudentStep2 from "./student-step2";
+import StudentStep3 from "./student-step3";
+import StudentStep4 from "./student-step4";
+import StudentStep5 from "./student-step5";
+import DetailView from "./detail-view";
 import { AppHeader } from "./ui/app-header";
 import { AppFooter } from "./ui/app-footer";
 
 interface StudentPageProps {
-    viewMode: "student-home" | "student-step6" | "student-step7" | "student-step8" | "student-step9";
-    studentRequests: Array<{ subject: string; status: string }>;
+    viewMode: "student-home" | "student-step1" | "student-step2" | "student-step3" | "student-step4" | "student-step5" | "student-detail";
+    studentName?: string;
+    className?: string;
+    studentRequests: Array<{ id: string; subject: string; status: string; type: any; timestamp: string }>;
+    selectedRequestId: string | null;
     onRequestHelp: () => void;
     onSelectHelpOption: (option: string) => void;
+    onGoToFocusSounds: () => void;
     onStudentApprove: (idx: number) => void;
     onStudentCancel: (idx: number) => void;
+    onNavigate: (mode: any) => void;
+    onViewDetail: (id: string) => void;
+    onBackFromDetail: () => void;
 }
 
 export default function StudentPage({
     viewMode,
+    studentName = "Student",
+    className,
     studentRequests,
+    selectedRequestId,
     onRequestHelp,
     onSelectHelpOption,
+    onGoToFocusSounds,
     onStudentApprove,
     onStudentCancel,
+    onNavigate,
+    onViewDetail,
+    onBackFromDetail,
 }: StudentPageProps) {
-    // Demo: studentnamn och status
-    const studentName = "Elev";
     const status = "Classroom Connected";
 
     const handleFooterNav = (target: string) => {
-        // Demo: navigera till home, profile, eller view
-        if (target === "student-home") onRequestHelp();
-        // Lägg till navigation till profile och view vid behov
+        if (target === "student-home") onNavigate("student-home");
+        if (target === "student-profile") onNavigate("student-step4");
+    };
+
+    const selectedRequest = studentRequests.find(r => r.id === selectedRequestId) || {
+        id: "mock",
+        studentName: "Me",
+        type: "stuck",
+        timestamp: "Now",
+        status: "pending"
     };
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
-            <AppHeader studentName={studentName} status={status} />
-            <main className="flex-1 flex flex-col items-center justify-center p-6">
+        <div className="h-full flex flex-col bg-background overflow-hidden">
+            <AppHeader 
+                studentName={studentName} 
+                className={className}
+                status={status} 
+                onHelpClick={() => onNavigate("student-step5")}
+            />
+            <main className="flex-1 flex flex-col items-center justify-center p-6 overflow-y-auto w-full">
                 {viewMode === "student-home" && <StudentHome onRequestHelp={onRequestHelp} />}
-                {viewMode === "student-step6" && <StudentStep6 onSelect={onSelectHelpOption} />}
-                {viewMode === "student-step7" && <StudentStep7 />}
-                {viewMode === "student-step8" && (
-                    <StudentStep8
+                {viewMode === "student-step1" && <StudentStep1 onSelect={onSelectHelpOption} />}
+                {viewMode === "student-step2" && <StudentStep2 onNext={onGoToFocusSounds} />}
+                {viewMode === "student-step3" && <StudentStep3 />}
+                {viewMode === "student-step4" && (
+                    <StudentStep4
                         requests={studentRequests}
                         onApprove={onStudentApprove}
                         onCancel={onStudentCancel}
+                        onViewDetail={onViewDetail}
                     />
                 )}
-                {viewMode === "student-step9" && <StudentStep9 />}
+                {viewMode === "student-step5" && <StudentStep5 onBack={() => onNavigate("student-home")} />}
+                {viewMode === "student-detail" && (
+                    <DetailView 
+                        request={selectedRequest as any}
+                        onBack={onBackFromDetail}
+                        onAction={() => {}} 
+                    />
+                )}
             </main>
             <AppFooter onNavigate={handleFooterNav} />
         </div>

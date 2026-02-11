@@ -15,10 +15,10 @@ export default function StudentView({ onRequestHelp }: StudentViewProps) {
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-            Behöver du hjälp?
+            Do you need help?
           </h1>
           <p className="text-muted-foreground text-base leading-relaxed">
-            Tryck på knappen för att diskret signalera till din lärare
+            Press the button to discreetly signal your teacher
           </p>
         </div>
 
@@ -30,13 +30,13 @@ export default function StudentView({ onRequestHelp }: StudentViewProps) {
           >
             <div className="flex flex-col items-center justify-center gap-3">
               <HandHelping className="h-10 w-10" />
-              <span className="text-2xl font-semibold">Jag behöver hjälp</span>
+              <span className="text-2xl font-semibold">I need help</span>
             </div>
           </Button>
         </div>
 
         <div className="text-center text-sm text-muted-foreground bg-card p-6 rounded-xl border border-border">
-          <p>Din förfrågan skickas direkt till läraren utan att någon annan ser den.</p>
+          <p>Your request is sent directly to the teacher without anyone else seeing it.</p>
         </div>
 
       </div>

@@ -1,63 +1,72 @@
-@import "tailwindcss";
 @import './fonts.css';
 @import './theme.css';
 
-@theme {
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+@layer base {
+  :root {
+    --color-border: hsl(var(--border));
+    --color-input: hsl(var(--input));
+    --color-ring: hsl(var(--ring));
+    --color-background: hsl(var(--background));
+    --color-foreground: hsl(var(--foreground));
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+    --color-primary: hsl(var(--primary));
+    --color-primary-foreground: hsl(var(--primary-foreground));
 
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
+    --color-secondary: hsl(var(--secondary));
+    --color-secondary-foreground: hsl(var(--secondary-foreground));
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+    --color-destructive: hsl(var(--destructive));
+    --color-destructive-foreground: hsl(var(--destructive-foreground));
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+    --color-muted: hsl(var(--muted));
+    --color-muted-foreground: hsl(var(--muted-foreground));
 
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+    --color-accent: hsl(var(--accent));
+    --color-accent-foreground: hsl(var(--accent-foreground));
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+    --color-popover: hsl(var(--popover));
+    --color-popover-foreground: hsl(var(--popover-foreground));
 
-  --color-icon-blue: hsl(var(--icon-blue));
-  --color-icon-purple: hsl(var(--icon-purple));
+    --color-card: hsl(var(--card));
+    --color-card-foreground: hsl(var(--card-foreground));
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+    --color-icon-blue: hsl(var(--icon-blue));
+    --color-icon-purple: hsl(var(--icon-purple));
 
-  /* Charts */
-  --color-chart-1: #4A90E2;
-  --color-chart-2: #9B51E0;
-  --color-chart-3: #F5A623;
-  --color-chart-4: #7ED957;
-  --color-chart-5: #F2994A;
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
 
-  /* Sidebar */
-  --color-sidebar: oklch(0.985 0 0);
-  --color-sidebar-foreground: oklch(0.145 0 0);
-  --color-sidebar-primary: #030213;
-  --color-sidebar-primary-foreground: oklch(0.985 0 0);
-  --color-sidebar-accent: oklch(0.97 0 0);
-  --color-sidebar-accent-foreground: oklch(0.205 0 0);
-  --color-sidebar-border: oklch(0.922 0 0);
-  --color-sidebar-ring: oklch(0.708 0 0);
+    /* Charts */
+    --color-chart-1: #4A90E2;
+    --color-chart-2: #9B51E0;
+    --color-chart-3: #F5A623;
+    --color-chart-4: #7ED957;
+    --color-chart-5: #F2994A;
+
+    /* Sidebar */
+    --color-sidebar: oklch(0.985 0 0);
+    --color-sidebar-foreground: oklch(0.145 0 0);
+    --color-sidebar-primary: #030213;
+    --color-sidebar-primary-foreground: oklch(0.985 0 0);
+    --color-sidebar-accent: oklch(0.97 0 0);
+    --color-sidebar-accent-foreground: oklch(0.205 0 0);
+    --color-sidebar-border: oklch(0.922 0 0);
+    --color-sidebar-ring: oklch(0.708 0 0);
+  }
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
+  }
+  html, body, #root {
+    height: 100%;
+    overflow: hidden; /* Prevent body scroll */
   }
   body {
     background-color: var(--color-background);
@@ -169,7 +178,7 @@
     margin-bottom: 0;
   }
 
-  /* gör icon-badge mer "Figma" */
+  /* make icon-badge more "Figma" */
   .icon-badge {
     margin-left: auto;
     margin-right: auto;
@@ -184,7 +193,7 @@
     background-color: var(--background);
   }
 
-  /* lite mer Figma spacing på stack */
+  /* little more Figma spacing on stack */
   .stack {
     display: flex;
     flex-direction: column;

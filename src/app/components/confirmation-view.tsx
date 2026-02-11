@@ -8,9 +8,9 @@ interface ConfirmationViewProps {
 }
 
 const helpTypeLabels = {
-  stuck: "Jag har fastnat",
-  explanation: "Behöver förklaring",
-  personal: "Personligt stöd",
+  stuck: "I'm stuck",
+  explanation: "Need explanation",
+  personal: "Personal support",
 };
 
 
@@ -32,7 +32,7 @@ export default function ConfirmationView({ helpType, onDone }: ConfirmationViewP
           </div>
 
           <div className="text-center space-y-3">
-            <h1 className="text-foreground">Din förfrågan är skickad!</h1>
+            <h1 className="text-foreground">Your request is sent!</h1>
             <p className="text-lg text-muted-foreground font-medium">
               {helpTypeLabels[helpType]}
             </p>
@@ -40,10 +40,10 @@ export default function ConfirmationView({ helpType, onDone }: ConfirmationViewP
 
           <div className="bg-secondary/50 p-6 rounded-xl text-center space-y-2">
             <p className="text-muted-foreground leading-relaxed">
-              Läraren har fått din förfrågan och kommer att hjälpa dig så snart som möjligt.
+              The teacher has received your request and will help you as soon as possible.
             </p>
             <p className="text-sm text-muted-foreground">
-              Du kan fortsätta arbeta medan du väntar.
+              You can continue working while you wait.
             </p>
           </div>
         </div>
@@ -53,7 +53,7 @@ export default function ConfirmationView({ helpType, onDone }: ConfirmationViewP
           variant="outline"
           className="w-full h-[var(--touch-target,48px)] text-[16px]"
         >
-          Stäng
+          Close
         </Button>
       </div>
     </div>

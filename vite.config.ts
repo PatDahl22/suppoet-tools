@@ -1,4 +1,5 @@
 import { defineConfig } from "vite";
+// Vite config updated
 import react from "@vitejs/plugin-react";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -15,7 +16,7 @@ export default defineConfig({
   },
   server: {
     host: true,
-    port: 5173,
+    port: 3000,
   },
   preview: {
     host: true,
