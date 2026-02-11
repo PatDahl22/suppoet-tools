@@ -27,18 +27,19 @@ export default function TeacherDashboard({ requests, onAcknowledge, onMarkDone, 
                         <div className="text-center py-10 text-muted-foreground">No active signals</div>
                     ) : (
                         requests.map((req, idx) => (
-                            <div 
+                            <button 
                                 key={req.id || idx} 
-                                className="bg-white border border-border rounded-[20px] p-4 shadow-sm relative overflow-hidden cursor-pointer hover:border-primary/50 transition-colors"
+                                className="w-full text-left bg-white border border-border rounded-[20px] p-4 shadow-sm relative overflow-hidden cursor-pointer hover:border-primary/50 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                 onClick={() => onViewDetail(req.id)}
                             >
                                  {/* Status indicator line on left */}
-                                <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${req.status === 'Pending' ? 'bg-orange-400' : 'bg-green-500'}`} />
+                                <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${req.status === 'Pending' ? 'bg-orange-600' : 'bg-green-600'}`} />
+                                <span className="sr-only">Status: {req.status}</span>
                                 
                                 <div className="pl-3 flex flex-col gap-4">
                                     <div className="flex justify-between items-start">
                                         <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-500">
+                                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
                                                 <User className="w-5 h-5" />
                                             </div>
                                             <div>
@@ -47,8 +48,8 @@ export default function TeacherDashboard({ requests, onAcknowledge, onMarkDone, 
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2">
-                                             <span className="text-xs font-mono text-red-500 font-medium">+ {getTime(idx)}</span>
-                                             <button className="text-muted-foreground hover:text-foreground" onClick={(e) => { e.stopPropagation(); /* Menu logic */ }}>
+                                             <span className="text-xs font-mono text-red-600 font-medium">+ {getTime(idx)}</span>
+                                             <button className="text-muted-foreground hover:text-foreground p-1 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" onClick={(e) => { e.stopPropagation(); /* Menu logic */ }} aria-label="More options">
                                                  <MoreHorizontal className="w-5 h-5" />
                                              </button>
                                         </div>
@@ -57,29 +58,29 @@ export default function TeacherDashboard({ requests, onAcknowledge, onMarkDone, 
                                     <div className="flex gap-3" onClick={(e) => e.stopPropagation()}>
                                         {req.status === 'Pending' ? (
                                              <button 
-                                                className="flex-1 px-4 py-2.5 rounded-xl bg-[#6D93F9] text-white text-sm font-medium hover:bg-[#5B82E8] transition-colors shadow-sm" 
+                                                className="flex-1 px-4 py-2.5 rounded-xl bg-[#4A72D6] text-white text-sm font-medium hover:bg-[#3b5eb8] transition-colors shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" 
                                                 onClick={() => onAcknowledge(idx)}
                                             >
                                                 Acknowledge
                                             </button>
                                         ) : (
-                                            <button 
-                                                className="flex-1 px-4 py-2.5 rounded-xl bg-green-500 text-white text-sm font-medium hover:bg-green-600 transition-colors shadow-sm cursor-default" 
+                                            <span 
+                                                className="flex-1 px-4 py-2.5 rounded-xl bg-green-600 text-white text-sm font-medium shadow-sm flex items-center justify-center cursor-default" 
                                             >
-                                                <Check className="w-4 h-4 inline mr-2" />
+                                                <Check className="w-4 h-4 mr-2" />
                                                 Acknowledged
-                                            </button>
+                                            </span>
                                         )}
                                        
                                         <button 
-                                            className="px-4 py-2.5 rounded-xl bg-muted/50 text-muted-foreground text-sm font-medium hover:bg-muted hover:text-foreground transition-colors border border-transparent hover:border-border" 
+                                            className="px-4 py-2.5 rounded-xl bg-muted/50 text-muted-foreground text-sm font-medium hover:bg-muted hover:text-foreground transition-colors border border-transparent hover:border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" 
                                             onClick={() => onMarkDone(idx)}
                                         >
                                             Mark Done
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </button>
                         ))
                     )}
                 </div>

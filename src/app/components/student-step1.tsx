@@ -8,7 +8,7 @@ export default function StudentStep1({ onSelect }: { onSelect: (type: string) =>
             label: "Stuck",
             sub: "Need help understanding",
             icon: Puzzle,
-            color: "text-[#F5A623]", // Orange
+            color: "text-[#D97706]", // Darker Orange (Amber-600)
             bg: "bg-[#FFF8E1]",
         },
         {
@@ -16,7 +16,7 @@ export default function StudentStep1({ onSelect }: { onSelect: (type: string) =>
             label: "Break",
             sub: "Need a moment to rest",
             icon: PauseCircle,
-            color: "text-[#4A90E2]", // Blue
+            color: "text-[#2563EB]", // Darker Blue (Blue-600)
             bg: "bg-[#E3F2FD]",
         },
         {
@@ -24,7 +24,7 @@ export default function StudentStep1({ onSelect }: { onSelect: (type: string) =>
             label: "Visit",
             sub: "Come to my desk",
             icon: User,
-            color: "text-[#7ED957]", // Green
+            color: "text-[#16A34A]", // Darker Green (Green-600)
             bg: "bg-[#E8F5E9]",
         },
         {
@@ -32,7 +32,7 @@ export default function StudentStep1({ onSelect }: { onSelect: (type: string) =>
             label: "Chat",
             sub: "Send text message",
             icon: MessageCircle,
-            color: "text-[#9B51E0]", // Purple
+            color: "text-[#9333EA]", // Darker Purple (Purple-600)
             bg: "bg-[#F3E5F5]",
         },
     ];
