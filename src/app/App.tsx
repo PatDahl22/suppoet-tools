@@ -1,6 +1,7 @@
-import { useState } from "react";
-import Student from "@/app/components/Student";
-import Teacher from "@/app/components/Teacher";
+import { useState, Suspense, lazy } from "react";
+// Lazy load components to reduce initial bundle size and TBT
+const Student = lazy(() => import("@/app/components/Student"));
+const Teacher = lazy(() => import("@/app/components/Teacher"));
 
 type Role = "student" | "teacher";
 
@@ -12,11 +13,19 @@ export default function App() {
   };
 
   if (selectedRole === "student") {
-    return <Student />;
+    return (
+      <Suspense fallback={<div className="flex items-center justify-center h-full">Loading...</div>}>
+        <Student />
+      </Suspense>
+    );
   }
 
   if (selectedRole === "teacher") {
-    return <Teacher />;
+    return (
+      <Suspense fallback={<div className="flex items-center justify-center h-full">Loading...</div>}>
+        <Teacher />
+      </Suspense>
+    );
   }
 
   return (
