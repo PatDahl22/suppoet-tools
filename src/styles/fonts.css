@@ -1,3 +1,5 @@
+/* Font file missing, using system fonts */
+/*
 @font-face {
   font-family: "DinFont";
   src: url("/fonts/dinfont.woff2") format("woff2");
@@ -5,9 +7,13 @@
   font-style: normal;
   font-weight: 400;
 }
+*/
 
 @layer base {
   body {
-    font-family: "DinFont", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    /* Removed "DinFont" since it's missing */
+    font-family:
+      ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+      Arial;
   }
 }

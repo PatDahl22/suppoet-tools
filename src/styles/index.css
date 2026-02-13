@@ -95,7 +95,7 @@
     min-height: 120px;
     border-radius: 24px;
     border: 1px solid var(--border);
-    background-color: #aec0f3;
+    background-color: #F8FAFC; /* Lighter background for contrast */
     padding: 2rem 2.5rem 2rem 2.5rem;
     text-align: left;
     box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
@@ -105,13 +105,14 @@
     align-items: center;
     gap: 1.5rem;
     cursor: pointer;
+    color: var(--foreground); /* Ensure high contrast text */
   }
 
   .role-card:hover {
-    background-color: #7798f3;
+    background-color: #2563EB; /* Accessible Blue (>4.5:1 with white) */
     transform: scale(1.02);
-    box-shadow: 0 4px 6px -1px rgba(46, 62, 114, 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    border-color: #4e6ec6;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2), 0 2px 4px -2px rgba(37, 99, 235, 0.1);
+    border-color: #2563EB;
   }
   
   .role-card:hover * {
